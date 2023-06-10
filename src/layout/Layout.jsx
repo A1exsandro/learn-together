@@ -35,6 +35,12 @@ const Layout = () => {
             hover:pl-4 hover:text-lime-500"
           ><Link to="/tictactoe">Jogo da Velha</Link></div>
 
+          <div 
+            onClick={toggleMenu}
+            className="hover:bg-slate-500 hover:cursor-pointer
+            hover:pl-4 hover:text-lime-500"
+          ><Link to="/words">Words</Link></div>
+
         </div> 
       </div>
 
