@@ -1,13 +1,10 @@
 import React from "react"
+import TicTacToe from "./pages/TicTacToe"
 
 const App = () => {
 
   return (
-    <div 
-      className="bg-black text-white"
-    >
-      Learn Together
-    </div>
+   <TicTacToe />
   )
 }
 

@@ -14,5 +14,7 @@ body{
   margin: 0; 
   padding: 0;
   box-sizing: border-box;  
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }
  
