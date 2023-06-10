@@ -1,10 +1,21 @@
 import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import Layout from "./pages/Layout"
+import Home from "./pages/Home"
 import TicTacToe from "./pages/TicTacToe"
 
 const App = () => {
 
   return (
-   <TicTacToe />
+    <BrowserRouter> 
+      <Routes>  
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/tictactoe" element={<TicTacToe />} />
+        </Route>  
+      </Routes> 
+    </BrowserRouter>  
   )
 }
 
