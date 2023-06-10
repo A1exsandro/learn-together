@@ -44,7 +44,10 @@ const Layout = () => {
         </div> 
       </div>
 
-      <Outlet />
+      <div className="h-screen">
+        <Outlet />
+      </div>
+      
     </>
   )
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { getStorage } from '../services/Firebase'
 import { ref, getDownloadURL } from "firebase/storage"  
+import Loader from "../components/Loader"
 
 const storage = getStorage()
 
@@ -36,6 +37,7 @@ const data = [
 
 const Words = () => { 
   const [images, setImages] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
    
   const promises = data.map((dt) => (
     getDownloadURL(ref(storage, `images/${dt}.jpeg`))
@@ -43,12 +45,17 @@ const Words = () => {
   
   useEffect(() => {
     Promise.all(promises)
-      .then((urls) => setImages(urls)) 
+      .then((urls) => setImages(urls))
+      .then(setIsLoaded(true))
   },[promises])
  
   return (
-    <div className="flex flex-wrap justify-center items-center gap-2 mt-2">
+    <div 
+      className="flex flex-wrap justify-center gap-2 mt-2"
+    >
      {
+     isLoaded
+      ? 
       images.map((urlImg, i) => (
         <div key={i}>
           <img 
@@ -58,6 +65,8 @@ const Words = () => {
           />
         </div>
       ))
+      :  
+      <Loader />
      }
     </div>
   )

@@ -49,7 +49,7 @@ const TicTacToe = () => {
   }
 
   return(
-    <main className='flex flex-col justify-center items-center w-screen'>
+    <main className='flex flex-col justify-center items-center'>
       <h1 className='text-4xl my-8'>Jogo da Velha</h1>
 
       <div 
