@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { getStorage } from '../services/Firebase'
 import { ref, getDownloadURL } from "firebase/storage"  
 import Loader from "../components/Loader"
+import Card from "../components/Card"
 
 const storage = getStorage()
 
@@ -37,36 +38,48 @@ const data = [
 
 const Words = () => { 
   const [images, setImages] = useState([])
-  const [isLoaded, setIsLoaded] = useState(false)
-   
+  const [sounds, setSounds] = useState([])
+  const [cards] = useState([{}])
+  
+  
   const promises = data.map((dt) => (
     getDownloadURL(ref(storage, `images/${dt}.jpeg`))
+  ))
+
+  const audioPromises = data.map((dt) => (
+    getDownloadURL(ref(storage, `audio/${dt}.mp3`))
   ))
   
   useEffect(() => {
     Promise.all(promises)
-      .then((urls) => setImages(urls))
-      .then(setIsLoaded(true))
-  },[promises])
+      .then((urls) => setImages(urls)) 
+
+    Promise.all(audioPromises)
+      .then((audios) => setSounds(audios)) 
+  },[])
+
+  // CREATING AN OBJECT THROUGH ARRAY INTERACTION
+  for (let i = 0; i < data.length; i++) {
+    cards[i] = {
+      id: i +1,
+      nameImg: data[i],
+      urlImg: images[i],
+      urlSound: sounds[i],
+    }
+  } 
  
   return (
     <div 
       className="flex flex-wrap justify-center gap-2 mt-2"
     >
      {
-     isLoaded
-      ? 
-      images.map((urlImg, i) => (
-        <div key={i}>
-          <img 
-            className="w-36 h-36 rounded-lg"
-            src={urlImg} 
-            alt=''
-          />
-        </div>
-      ))
-      :  
-      <Loader />
+      ( sounds.length > 0  && 
+        cards.map((card, i) => (
+          <Card key={i} {...card} />
+        ))
+      ) || (
+        <Loader />
+      )
      }
     </div>
   )
