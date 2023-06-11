@@ -40,17 +40,16 @@ const Words = () => {
   const [images, setImages] = useState([])
   const [sounds, setSounds] = useState([])
   const [cards] = useState([{}])
-  
-  
-  const promises = data.map((dt) => (
-    getDownloadURL(ref(storage, `images/${dt}.jpeg`))
-  ))
-
-  const audioPromises = data.map((dt) => (
-    getDownloadURL(ref(storage, `audio/${dt}.mp3`))
-  ))
-  
+ 
   useEffect(() => {
+    const promises = data.map((dt) => (
+      getDownloadURL(ref(storage, `images/${dt}.jpeg`))
+    ))
+  
+    const audioPromises = data.map((dt) => (
+      getDownloadURL(ref(storage, `audio/${dt}.mp3`))
+    ))
+
     Promise.all(promises)
       .then((urls) => setImages(urls)) 
 
