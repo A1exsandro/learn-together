@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
+import MemoryGame from "./pages/MemoryGame"
 import TicTacToe from "./pages/TicTacToe"
 import Words from "./pages/Words"
 
@@ -15,6 +16,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/words" element={<Words />} />
+          <Route path="/memory-game" element={<MemoryGame />} />
         </Route>  
       </Routes> 
     </BrowserRouter>  
