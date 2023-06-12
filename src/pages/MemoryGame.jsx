@@ -19,7 +19,9 @@ const MemoryGame = () => {
       <div className="grid grid-cols-4 gap-2">
         {
           loading ? (
-            <p className="">Wait please, loading the cards...</p>
+            <div className="fixed text-center font-bold w-full">
+              <p className="">Wait please, loading the cards...</p>
+            </div>
           ) : (
             cards.map((card) => (
               <Card key={card.id} {...card} />

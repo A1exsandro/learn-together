@@ -16,8 +16,9 @@ const Card = ({ id, idBoth, cardName}) => {
       >
         
         {/* FRONT OF CARD */}
-        <div className="flex justify-center items-center flip bg-orange-400 rotateY rounded-xl">
-          <h1 className="">Front</h1>
+        <div className="flex justify-center items-center flip rotateY rounded-xl
+          bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+          <h1 className=""></h1>
         </div>
 
         {/* BACK OF CARD */}
