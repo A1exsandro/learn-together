@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 body{   
+  height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;  
+  background-color: rgb(100 116 139 / 1);
 }
 
 #root {   
   margin: 0; 
   padding: 0;
   box-sizing: border-box;  
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }
  

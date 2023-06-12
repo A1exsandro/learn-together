@@ -44,7 +44,7 @@ const Layout = () => {
         </div> 
       </div>
 
-      <div className="h-screen">
+      <div>
         <Outlet />
       </div>
       

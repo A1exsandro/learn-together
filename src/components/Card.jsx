@@ -18,7 +18,7 @@ const Card = ({ nameImg, urlImg, urlSound }) => {
   return (
     <div onClick={() => handleClick()}>
       <img 
-        className="w-36 h-36 rounded-lg"
+        className="w-20 aspect-[3/4] md:w-36 rounded-lg"
         src={urlImg} 
         alt={nameImg}
       />
