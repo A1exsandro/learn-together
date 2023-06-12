@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { MemoryContextProvider } from "./contexts/MemoryContext"
 
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
@@ -16,7 +17,11 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/words" element={<Words />} />
-          <Route path="/memory-game" element={<MemoryGame />} />
+          <Route path="/memory-game" element={
+            <MemoryContextProvider>
+              <MemoryGame />
+            </MemoryContextProvider>
+          } />
         </Route>  
       </Routes> 
     </BrowserRouter>  

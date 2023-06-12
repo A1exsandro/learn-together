@@ -3,9 +3,12 @@ import Card from "../components/memory-game/Card"
 import Result from "../components/memory-game/Result"
 import Score from "../components/memory-game/Score"
 import { pairsOfCards } from "../constants/cards"
+import { useMemory } from "../contexts/MemoryContext"
 
 const MemoryGame = () => {
-  return(
+  const { value } = useMemory()
+
+  return( 
     <div className="p-2">
       <h1>Memory Game</h1>
       <Score />
@@ -17,8 +20,9 @@ const MemoryGame = () => {
           ))
         }
       </div>
+      
       <Result />
-    </div>
+    </div> 
   )
 }
 
