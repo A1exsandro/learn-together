@@ -21,6 +21,16 @@ export const MemoryContextProvider = (props) => {
     setCards(pairsOfCards)
   }
 
+  // RESET GAME
+  const resetGame = () => {
+    setCards(pairsOfCards)
+    setIdFlippedCard([])
+    setIdsFlippedCards([])
+    setIdFoundPairsCards([])
+    setNumbersCardsFlipped(0)
+    setScore(0)
+  }
+
   // INCREMENT A VALUE WHEN THE CARD IS FLIPPED
   const numberOfTimesFlipped = () => {
     setNumbersCardsFlipped((amount) => amount + 1)
@@ -72,7 +82,8 @@ export const MemoryContextProvider = (props) => {
       showCard,
       idsFlippedCards,
       idFoundPairsCards,
-      startGame
+      startGame,
+      resetGame
     }}>
       { props.children }
     </MemoryContext.Provider>
