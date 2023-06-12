@@ -1,6 +1,4 @@
-const cards = ['Love', 'Work', 'life', 'Good', 'Learn', 'Stop',
-  'Girl', 'Tall', 'Short', 'Fast', 'Big', 'Study', 'Try'
-]
+const cards = ['Love', 'Work', 'life', 'Good']
 
 const uniqueCard = cards.map((cardName, idBoth) => ({
   idBoth,

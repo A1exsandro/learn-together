@@ -1,9 +1,12 @@
+import { useMemory } from "../../contexts/MemoryContext"
 
 const Score = () => {
+  const { numbersCardsFlipped, score } = useMemory() 
+  
   return (
     <div className="flex justify-between mb-1">
-      <Points titulo="Score" value={0} />
-      <Points titulo="Card Flipped" value={0} />
+      <Points titulo="Score" value={score} />
+      <Points titulo="Card Flipped" value={numbersCardsFlipped} />
     </div>
   )
 }
