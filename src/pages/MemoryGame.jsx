@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Card from "../components/memory-game/Card"
 import Result from "../components/memory-game/Result"
-import Score from "../components/memory-game/Score"
-import { pairsOfCards } from "../constants/cards"
+import Score from "../components/memory-game/Score" 
 import { useMemory } from "../contexts/MemoryContext"
 
 const MemoryGame = () => {
-  const { value } = useMemory()
+  const { cards, startGame } = useMemory()
+
+  useEffect(() => {
+    startGame()
+  }, [])
 
   return( 
     <div className="p-2">
@@ -15,12 +18,12 @@ const MemoryGame = () => {
 
       <div className="grid grid-cols-4 gap-2">
         {
-          pairsOfCards.map((card) => (
+          cards.map((card) => (
             <Card key={card.id} {...card} />
           ))
         }
       </div>
-      
+
       <Result />
     </div> 
   )

@@ -1,14 +1,14 @@
 import { useMemory } from "../../contexts/MemoryContext"
 
 const Card = ({ id, idBoth, cardName}) => {
-  const { showCard, idFoundCards } = useMemory()
+  const { showCard, idsFlippedCards, idFoundPairsCards } = useMemory()
 
   const handleClick = () => {
     showCard({ id, idBoth })
   } 
 
-  const flipped = idFoundCards.includes(id) 
-  console.log(idFoundCards)
+  const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth)
+  console.log(idsFlippedCards)
 
   return (
     <div className="" id={id} onClick={handleClick}>
