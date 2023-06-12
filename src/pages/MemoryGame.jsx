@@ -5,7 +5,7 @@ import Score from "../components/memory-game/Score"
 import { useMemory } from "../contexts/MemoryContext"
 
 const MemoryGame = () => {
-  const { cards, startGame } = useMemory()
+  const { cards, startGame, loading } = useMemory()
 
   useEffect(() => {
     startGame()
@@ -18,9 +18,13 @@ const MemoryGame = () => {
 
       <div className="grid grid-cols-4 gap-2">
         {
-          cards.map((card) => (
-            <Card key={card.id} {...card} />
-          ))
+          loading ? (
+            <p className="">Wait please, loading the cards...</p>
+          ) : (
+            cards.map((card) => (
+              <Card key={card.id} {...card} />
+            ))
+          ) 
         }
       </div>
 

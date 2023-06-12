@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from "react"
 import { pairsOfCards } from "../constants/cards"
 import { TEMPO_MS } from "../constants/config"
+import { getCards } from "../services/GetCardToMemoryGame"
 
 const MemoryContext = createContext()
 
 export const MemoryContextProvider = (props) => {
   const [cards, setCards] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const [idFlippedCard, setIdFlippedCard] = useState([])
   const [idsFlippedCards, setIdsFlippedCards] = useState([])
@@ -17,8 +18,11 @@ export const MemoryContextProvider = (props) => {
   const [score, setScore] = useState(0)
 
   // START GAME
-  const startGame = () => {
-    setCards(pairsOfCards)
+  const startGame = async () => {
+    setLoading(true)
+    const cards = await getCards()
+    setCards(cards)
+    setLoading(false)
   }
 
   // RESET GAME
@@ -77,6 +81,7 @@ export const MemoryContextProvider = (props) => {
   return (
     <MemoryContext.Provider value={{
       cards,
+      loading,
       numbersCardsFlipped,
       score,
       showCard,
