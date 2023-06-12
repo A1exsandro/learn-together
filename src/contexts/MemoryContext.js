@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { pairsOfCards } from "../constants/cards"
+import { TEMPO_MS } from "../constants/config"
 
 const MemoryContext = createContext()
 
@@ -56,7 +57,7 @@ export const MemoryContextProvider = (props) => {
       setIdFoundPairsCards((ids) => [...ids, idBoth])
     }
 
-    const time = sameCards ? 0 : 2000
+    const time = sameCards ? 0 : TEMPO_MS.FLIP_CARDS
 
     setTimeout(() => {
       setIdsFlippedCards([])

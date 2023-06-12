@@ -7,9 +7,8 @@ const Card = ({ id, idBoth, cardName}) => {
     showCard({ id, idBoth })
   } 
 
-  const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth)
-  console.log(idsFlippedCards)
-
+  const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth) 
+  
   return (
     <div className="" id={id} onClick={handleClick}>
       <div 
