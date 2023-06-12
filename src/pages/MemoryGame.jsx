@@ -1,15 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Card from "../components/memory-game/Card"
 import Result from "../components/memory-game/Result"
 import Score from "../components/memory-game/Score" 
 import { useMemory } from "../contexts/MemoryContext"
 
 const MemoryGame = () => {
-  const { cards, startGame, loading } = useMemory()
-
-  useEffect(() => {
-    startGame()
-  }, [])
+  const { cards, loading } = useMemory()
 
   return( 
     <div className="p-2">

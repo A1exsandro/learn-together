@@ -1,4 +1,3 @@
-import { useState } from "react" 
 import { useMemory } from "../../contexts/MemoryContext"
 
 const Result = () => {

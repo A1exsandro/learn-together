@@ -8,12 +8,10 @@ const MemoryContext = createContext()
 export const MemoryContextProvider = (props) => {
   const [cards, setCards] = useState([])
   const [loading, setLoading] = useState(false)
-
-  const [idFlippedCard, setIdFlippedCard] = useState([])
+ 
   const [idsFlippedCards, setIdsFlippedCards] = useState([])
   const [idFoundPairsCards, setIdFoundPairsCards] = useState([])
-
-  const [openCards, setOpenCards] = useState([])
+ 
   const [numbersCardsFlipped, setNumbersCardsFlipped] = useState(0)
   const [score, setScore] = useState(0)
 
@@ -27,8 +25,7 @@ export const MemoryContextProvider = (props) => {
 
   // RESET GAME
   const resetGame = () => {
-    setCards(pairsOfCards)
-    setIdFlippedCard([])
+    setCards(pairsOfCards) 
     setIdsFlippedCards([])
     setIdFoundPairsCards([])
     setNumbersCardsFlipped(0)
@@ -57,7 +54,7 @@ export const MemoryContextProvider = (props) => {
     if (idsFlippedCards.length >= 2) {
       return setIdsFlippedCards([])
     }
-    if (idsFlippedCards.length == 0) {
+    if (idsFlippedCards.length === 0) {
       return setIdsFlippedCards([id])
     }
 
