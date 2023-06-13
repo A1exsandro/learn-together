@@ -68,18 +68,21 @@ const Words = () => {
   } 
  
   return (
-    <div 
-      className="grid grid-cols-4 gap-4 p-4"
-    >
-     {
-      ( sounds.length > 0  && 
-        cards.map((card, i) => (
-          <Card key={i} {...card} />
-        ))
-      ) || (
-        <Loader />
-      )
-     }
+    <div className="flex flex-col">
+      <h1 className="text-center text-2xl font-bold mt-4">Listen and Write</h1>
+      <div 
+        className="grid grid-cols-4 gap-4 p-4"
+      >
+      {
+        ( sounds.length > 0  && 
+          cards.map((card, i) => (
+            <Card key={i} {...card} />
+          ))
+        ) || (
+          <Loader />
+        )
+      }
+      </div>
     </div>
   )
 }
