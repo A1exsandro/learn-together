@@ -69,7 +69,7 @@ const Words = () => {
  
   return (
     <div 
-      className="flex flex-wrap justify-center gap-2 py-4"
+      className="grid grid-cols-4 gap-4 p-4"
     >
      {
       ( sounds.length > 0  && 
