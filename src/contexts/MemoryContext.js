@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react"
-import { pairsOfCards } from "../constants/cards"
+// import { pairsOfCards } from "../constants/cards"
 import { TEMPO_MS } from "../constants/config"
 import { getCards } from "../services/GetCardToMemoryGame"
 
