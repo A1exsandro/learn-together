@@ -74,12 +74,13 @@ const Words = () => {
         className="grid grid-cols-4 gap-4 p-4"
       >
       {
+        (
+          <Loader />
+        ) || 
         ( sounds.length > 0  && 
           cards.map((card, i) => (
             <Card key={i} {...card} />
           ))
-        ) || (
-          <Loader />
         )
       }
       </div>
