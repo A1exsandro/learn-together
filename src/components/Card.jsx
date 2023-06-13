@@ -13,19 +13,17 @@ const Card = ({ nameImg, urlImg, urlSound }) => {
   const handleClick = () => {
     playAudio()
     setFlipped(!flipped)
-  }
-
-  console.log(urlSound)
+  } 
 
   return (
     <div 
         className={`aspect-[3/4] card-container rounded-xl ${flipped ? '' : 'rotateY'}`}
+        onClick={() => handleClick()}
       >
       {/* FRONT OF CARD */}
       <div 
         className="flex justify-center items-center flip rotateY rounded-xl
         bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-        onClick={() => handleClick()}
       >
         <img 
           className="w-full h-full rounded-xl"
