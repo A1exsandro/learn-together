@@ -1,6 +1,7 @@
-import React, { useRef } from "react" 
+import React, { useRef, useState } from "react" 
 
 const Card = ({ nameImg, urlImg, urlSound }) => {
+  const [flipped, setFlipped] = useState(true)
   const audioRef = useRef(null)
 
   const playAudio = () => {
@@ -11,22 +12,36 @@ const Card = ({ nameImg, urlImg, urlSound }) => {
 
   const handleClick = () => {
     playAudio()
+    setFlipped(!flipped)
   }
 
   console.log(urlSound)
 
   return (
-    <div onClick={() => handleClick()}>
-      <img 
-        className="w-20 aspect-[3/4] md:w-36 rounded-lg"
-        src={urlImg} 
-        alt={nameImg}
-      />
-    
-      <audio ref={audioRef}>
-        <source src={urlSound} /> 
-      </audio>
-     
+    <div 
+        className={`aspect-[3/4] card-container rounded-xl ${flipped ? '' : 'rotateY'}`}
+      >
+      {/* FRONT OF CARD */}
+      <div 
+        className="flex justify-center items-center flip rotateY rounded-xl
+        bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+        onClick={() => handleClick()}
+      >
+        <img 
+          className="w-full h-full rounded-xl"
+          src={urlImg} 
+          alt={nameImg}
+        />
+      
+        <audio ref={audioRef}>
+          <source src={urlSound} /> 
+        </audio> 
+      </div>
+
+      {/* BACK OF CARD */}
+      <div className="flex justify-center items-center bg-red-400 flip backface-none rounded-xl">
+        Back
+      </div>
     </div>
   )
 }
