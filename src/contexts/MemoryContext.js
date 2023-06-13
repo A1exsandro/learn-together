@@ -24,8 +24,9 @@ export const MemoryContextProvider = (props) => {
   }
 
   // RESET GAME
-  const resetGame = () => {
-    setCards(pairsOfCards) 
+  const resetGame = async () => {
+    const cards = await getCards()
+    setCards(cards) 
     setIdsFlippedCards([])
     setIdFoundPairsCards([])
     setNumbersCardsFlipped(0)
