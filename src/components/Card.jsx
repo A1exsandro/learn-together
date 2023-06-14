@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react"
 const Card = ({ nameImg, urlImg, urlSound }) => {
   const [flipped, setFlipped] = useState(true)
   const audioRef = useRef(null)
-
+  
   const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.play()

@@ -1,5 +1,5 @@
 const cards = [
-  'butterfly', 'banana'
+  'butterfly', 'banana','avocado'
 ]
 
 const uniqueCard = cards.map((cardName, idBoth) => ({
