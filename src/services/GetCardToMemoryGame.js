@@ -1,4 +1,4 @@
-import { pairsOfCards } from "../constants/cards"
+import { pairsOfCards } from "../constants/cards" 
 
 export const getCards = async () => {
   await delay(2000)
