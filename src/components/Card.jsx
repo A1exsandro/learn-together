@@ -17,9 +17,13 @@ const Card = ({ nameImg, urlImg, urlSound }) => {
 
   return (
     <div 
-        className={`aspect-[3/4] card-container rounded-xl ${flipped ? '' : 'rotateY'}`}
-        onClick={() => handleClick()}
-      >
+      className={`aspect-[3/4] card-container rounded-xl ${flipped ? '' : 'rotateY'}`}
+      onClick={() => handleClick()}
+    >
+      <audio ref={audioRef}>
+        <source src={urlSound} /> 
+      </audio>
+        
       {/* FRONT OF CARD */}
       <div 
         className="flex justify-center items-center flip rotateY rounded-xl
@@ -29,11 +33,7 @@ const Card = ({ nameImg, urlImg, urlSound }) => {
           className="w-full h-full rounded-xl"
           src={urlImg} 
           alt={nameImg}
-        />
-      
-        <audio ref={audioRef}>
-          <source src={urlSound} /> 
-        </audio> 
+        /> 
       </div>
 
       {/* BACK OF CARD */}

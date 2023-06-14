@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { pairsOfCards } from "../constants/cards"
-import { TEMPO_MS } from "../constants/config"
-// import { getCards } from "../services/GetCardToMemoryGame"
+import { TEMPO_MS } from "../constants/config" 
 
 import { getStorage } from '../services/Firebase'
 import { ref, getDownloadURL } from "firebase/storage" 
@@ -10,7 +9,8 @@ const MemoryContext = createContext()
 const storage = getStorage()
 
 export const MemoryContextProvider = (props) => { 
-  const data = pairsOfCards
+  const data = pairsOfCards 
+  const makeCards = [{}]
   const [cards, setCards] = useState([{}])
   const [loading, setLoading] = useState(false)
  
@@ -23,6 +23,7 @@ export const MemoryContextProvider = (props) => {
   // GET DATA FROM FIREBASE
   const [images, setImages] = useState([])
   const [sounds, setSounds] = useState([])
+
   useEffect(() => {
     const promises = data.map((dt) => (
       getDownloadURL(ref(storage, `images/${dt.cardName}.jpeg`))
@@ -37,11 +38,12 @@ export const MemoryContextProvider = (props) => {
 
     Promise.all(audioPromises)
       .then((audios) => setSounds(audios)) 
-  },[])
+
+  },[data])
 
   // CREATING AN OBJECT THROUGH ARRAY INTERACTION
   for (let i = 0; i < data.length; i++) {
-    cards[i] = {
+    makeCards[i] = {
       id: data[i].id,
       idBoth: data[i].idBoth,
       nameImg: data[i].cardName,
@@ -50,18 +52,38 @@ export const MemoryContextProvider = (props) => {
     }
   } 
 
+  // SHUFFLE THE CARDS
+  const getCards = async () => { 
+   
+    return shuffleCards(makeCards) 
+  }  
+
+  const shuffleCards = (list = []) => {
+    for (let i = list.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1))
+  
+      const item = list[i]
+      const randomItem = list[randomIndex]
+  
+      list[i] = randomItem
+      list[randomIndex] = item
+    }
+  
+    return list
+  }
+
   // START GAME
   const startGame = async () => {
     setLoading(true)
-    // const cards = await getCards()
-    // setCards(cards)
+    const cards = await getCards()
+    setCards(cards)
     setLoading(false)
   }
 
   // RESET GAME
   const resetGame = async () => {
-    // const cards = await getCards()
-    // setCards(cards) 
+    const cards = await getCards()
+    setCards(cards) 
     setIdsFlippedCards([])
     setIdFoundPairsCards([])
     setNumbersCardsFlipped(0)
@@ -112,7 +134,7 @@ export const MemoryContextProvider = (props) => {
   }
 
   return (
-    <MemoryContext.Provider value={{ 
+    <MemoryContext.Provider value={{  
       cards,
       setCards,
       loading,

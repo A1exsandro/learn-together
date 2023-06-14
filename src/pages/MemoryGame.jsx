@@ -5,10 +5,8 @@ import Score from "../components/memory-game/Score"
 import { useMemory } from "../contexts/MemoryContext"
 
 const MemoryGame = () => { 
-  const { cards } = useMemory()
-  const loading = false
-
-  console.log(cards)
+  const { cards, loading } = useMemory() 
+  console.log('cards in memory-game component', cards )
   
   return( 
     <div className="p-2">
@@ -22,8 +20,8 @@ const MemoryGame = () => {
               <p className="">Wait please, loading the cards...</p>
             </div>
           ) : (
-            cards.map((card) => (
-              <Card key={card.id} {...card} />
+            cards.map((card, i) => (
+              <Card key={i} {...card} />
             ))
           ) 
         }

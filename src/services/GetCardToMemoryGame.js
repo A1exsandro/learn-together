@@ -1,8 +1,13 @@
-// import { pairsOfCards } from "../constants/cards" 
+// import { useMemory } from "../contexts/MemoryContext"
+
+
+
 
 // export const getCards = async () => {
+//   const { makeCards } = useMemory()
+
 //   await delay(2000)
-//   return shuffleCards(pairsOfCards) 
+//   return shuffleCards(makeCards) 
 // }
 
 // const delay = async (time = 2000) => {

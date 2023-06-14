@@ -1,9 +1,11 @@
+import { useState } from "react"
 import { useMemory } from "../../contexts/MemoryContext"
 
 const Result = () => {
-	const { idFoundPairsCards, cards, numbersCardsFlipped, resetGame } = useMemory() 
+	const { idFoundPairsCards, cards, numbersCardsFlipped, resetGame } = useMemory()
 
   const finished = cards.length === idFoundPairsCards.length * 2
+
   const hitRate = cards.length / numbersCardsFlipped * 100
 
 	return (
@@ -21,8 +23,8 @@ const Result = () => {
 					<strong>Taxa de acertos:</strong>
 					<span className="ml-2">{hitRate.toFixed(0)}%</span>
 				</p>
-
-				<button 
+        
+        <button 
           onClick={resetGame}
           className="bg-black py-2 w-1/2 rounded-xl hover:cursor-pointer"
         >

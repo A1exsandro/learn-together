@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react" 
+import React, { useRef } from "react" 
 import { useMemory } from "../../contexts/MemoryContext" 
 
 const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
   const { showCard, idsFlippedCards, idFoundPairsCards } = useMemory() 
   
   const audioRef = useRef(null) 
-  const [cards] = useState([{}]) 
 
   const playAudio = () => {
     if (audioRef.current) {
@@ -18,8 +17,6 @@ const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
     showCard({ id, idBoth })
   } 
 
-  console.log(nameImg)
-
   const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth) 
   
   return (
@@ -27,13 +24,12 @@ const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
       <div 
         className={`aspect-[3/4] card-container  ${flipped ? '' : 'rotateY'}`}
       >
-         <audio ref={audioRef}>
-          <source src={urlSound} /> 
-        </audio>
-
         {/* FRONT OF CARD */}
         <div className="flex justify-center items-center flip rotateY rounded-xl
           bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"> 
+          <audio ref={audioRef}>
+            <source src={urlSound} /> 
+          </audio>
         </div>
 
         {/* BACK OF CARD */}
@@ -49,7 +45,6 @@ const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
               <div>{nameImg}</div>
             )
           }
-          {console.log(id % 2)}
         </div>
 
       </div>
