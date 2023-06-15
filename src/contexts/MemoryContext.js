@@ -1,89 +1,30 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { pairsOfCards } from "../constants/cards"
+import { createContext, useContext, useState } from "react" 
 import { TEMPO_MS } from "../constants/config" 
-
-import { getStorage } from '../services/Firebase'
-import { ref, getDownloadURL } from "firebase/storage" 
-
+import { useFetch } from "../services/GetCardToMemoryGame"
+ 
 const MemoryContext = createContext()
-const storage = getStorage()
 
-export const MemoryContextProvider = (props) => { 
-  const data = pairsOfCards 
-  const makeCards = [{}]
-  const [cards, setCards] = useState([{}])
+export const MemoryContextProvider = (props) => {  
+  const [fetch, setFetch] = useState(useFetch())
+  const [cards, setCards] = useState(useFetch())
   const [loading, setLoading] = useState(false)
  
   const [idsFlippedCards, setIdsFlippedCards] = useState([])
   const [idFoundPairsCards, setIdFoundPairsCards] = useState([])
  
   const [numbersCardsFlipped, setNumbersCardsFlipped] = useState(0)
-  const [score, setScore] = useState(0)
-
-  // GET DATA FROM FIREBASE
-  const [images, setImages] = useState([])
-  const [sounds, setSounds] = useState([])
-
-  useEffect(() => {
-    const promises = data.map((dt) => (
-      getDownloadURL(ref(storage, `images/${dt.cardName}.jpeg`))
-    ))
-  
-    const audioPromises = data.map((dt) => (
-      getDownloadURL(ref(storage, `audio/${dt.cardName}.mp3`))
-    ))
-
-    Promise.all(promises)
-      .then((urls) => setImages(urls)) 
-
-    Promise.all(audioPromises)
-      .then((audios) => setSounds(audios)) 
-
-  },[data])
-
-  // CREATING AN OBJECT THROUGH ARRAY INTERACTION
-  for (let i = 0; i < data.length; i++) {
-    makeCards[i] = {
-      id: data[i].id,
-      idBoth: data[i].idBoth,
-      nameImg: data[i].cardName,
-      urlImg: images[i],
-      urlSound: sounds[i],
-    }
-  } 
-
-  // SHUFFLE THE CARDS
-  const getCards = async () => { 
-   
-    return shuffleCards(makeCards) 
-  }  
-
-  const shuffleCards = (list = []) => {
-    for (let i = list.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1))
-  
-      const item = list[i]
-      const randomItem = list[randomIndex]
-  
-      list[i] = randomItem
-      list[randomIndex] = item
-    }
-  
-    return list
-  }
+  const [score, setScore] = useState(0) 
 
   // START GAME
-  const startGame = async () => {
-    setLoading(true)
-    const cards = await getCards()
-    setCards(cards)
+  const startGame = () => {
+    setLoading(true) 
+    setCards(fetch)
     setLoading(false)
   }
 
   // RESET GAME
-  const resetGame = async () => {
-    const cards = await getCards()
-    setCards(cards) 
+  const resetGame =  () => {
+    setCards(fetch) 
     setIdsFlippedCards([])
     setIdFoundPairsCards([])
     setNumbersCardsFlipped(0)
