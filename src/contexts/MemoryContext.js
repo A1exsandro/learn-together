@@ -5,8 +5,8 @@ import { useFetch } from "../services/GetCardToMemoryGame"
 const MemoryContext = createContext()
 
 export const MemoryContextProvider = (props) => {  
-  const [fetch, setFetch] = useState(useFetch())
-  const [cards, setCards] = useState(useFetch())
+  const fetch = useFetch() 
+  const [cards, setCards] = useState([])  
   const [loading, setLoading] = useState(false)
  
   const [idsFlippedCards, setIdsFlippedCards] = useState([])
