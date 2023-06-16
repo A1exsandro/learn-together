@@ -1,3 +1,3 @@
 export const TEMPO_MS = {
-  FLIP_CARDS: 2000
+  FLIP_CARDS: 1000
 }

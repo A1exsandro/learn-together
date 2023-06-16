@@ -3,8 +3,10 @@ import { useMemory } from "../../contexts/MemoryContext"
 
 const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
   const { showCard, idsFlippedCards, idFoundPairsCards } = useMemory() 
-  
+  const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth)
   const audioRef = useRef(null) 
+
+  console.log(idsFlippedCards.length)
 
   const playAudio = () => {
     if (audioRef.current) {
@@ -13,12 +15,11 @@ const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
   } 
 
   const handleClick = () => {
+    if ( idsFlippedCards.length >= 2 ) return
     playAudio()
     showCard({ id, idBoth })
   } 
 
-  const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth) 
-  
   return (
     <div className="" id={id} onClick={handleClick}>
       <div 
