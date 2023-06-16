@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { MemoryContextProvider } from "./contexts/MemoryContext"
 
 import Layout from "./layout/Layout"
+import BodyParts from "./pages/BodyParts"
 import Colors from "./pages/Colors"
 import Greetings from "./pages/Greeting"
 import Home from "./pages/Home"
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/month-names" element={<MonthNames />} />
           <Route path="/greetings" element={<Greetings />} />
           <Route path="/colors" element={<Colors />} />
+          <Route path="/body-parts" element={<BodyParts />} />
+          <Route path="/phrasal-verbs" element={<BodyParts />} />
 
           <Route path="/memory-game" element={
             <MemoryContextProvider>
