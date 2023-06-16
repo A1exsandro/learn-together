@@ -2,7 +2,7 @@
 const WeekDays = () => {
 
   return (
-    <div className="">
+    <div>
       Day of the week
     </div>
   )
