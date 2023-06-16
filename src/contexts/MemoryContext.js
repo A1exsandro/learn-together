@@ -16,8 +16,8 @@ export const MemoryContextProvider = (props) => {
   const [score, setScore] = useState(0) 
 
   // START GAME
-  const startGame = () => {
-    setLoading(true) 
+  const startGame = async () => {
+    setLoading(true)  
     setCards(fetch)
     setLoading(false)
   }

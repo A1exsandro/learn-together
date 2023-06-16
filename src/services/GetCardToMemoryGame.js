@@ -40,9 +40,9 @@ export const useFetch = () => {
       urlImg: images[i],
       urlSound: sounds[i],
     }
-  }  
-
-  return shuffleCards(makeCards) 
+  }   
+  
+  return shuffleCards(makeCards)
 } 
 
 const shuffleCards = (list = []) => {
