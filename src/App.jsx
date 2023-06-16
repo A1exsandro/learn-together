@@ -6,6 +6,7 @@ import Layout from "./layout/Layout"
 import Home from "./pages/Home"
 import MemoryGame from "./pages/MemoryGame"
 import TicTacToe from "./pages/TicTacToe" 
+import WeekDays from "./pages/WeekDays"
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/tictactoe" element={<TicTacToe />} /> 
+          <Route path="/days-of-the-week" element={<WeekDays />} />
           <Route path="/memory-game" element={
             <MemoryContextProvider>
               <MemoryGame />

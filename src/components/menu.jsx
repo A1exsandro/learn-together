@@ -1,17 +1,16 @@
 import React from "react"
+import { Link } from "react-router-dom" 
 
 const Menu = ({ page }) => { 
-  const handleClick = () => {
-    alert(page)
-  }
+  const route = page.toLowerCase().replaceAll(' ', '-')
 
-  return (
-    <div 
-      onClick={handleClick}
+  return ( 
+    <Link  
       className="bg-white aspect-[12/4] rounded-xl flex justify-center items-center"
+      to={`/${route}`}
     >
       { page }
-    </div>
+    </Link>  
   )
 }
 
