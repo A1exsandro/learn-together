@@ -6,8 +6,6 @@ const Card = ({ id, idBoth, nameImg, urlImg, urlSound}) => {
   const flipped = idsFlippedCards.includes(id) || idFoundPairsCards.includes(idBoth)
   const audioRef = useRef(null) 
 
-  console.log(idsFlippedCards.length)
-
   const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.play()
