@@ -7,7 +7,7 @@ import { useMemory } from "../contexts/MemoryContext"
 const MemoryGame = () => { 
   const { cards, loading } = useMemory()  
 
-  return( 
+  return ( 
     <div className="p-2">
       <h1>Memory Game</h1>
       <Score />
@@ -18,7 +18,7 @@ const MemoryGame = () => {
             <div className="fixed text-center font-bold w-full">
               <p className="">Wait please, loading the cards...</p>
             </div>
-          ) : (
+          ) : ( 
             cards.map((card, i) => (
               <Card key={i} {...card} />
             ))
