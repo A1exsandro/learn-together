@@ -1,4 +1,5 @@
 import React from "react"
+import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useFetch } from "../hooks/useFetch"
@@ -7,6 +8,10 @@ const Write = () => {
   const { makedCards } = useFetch()
   const [endList, setEndList] = useState([])
   const [answer, setAnswer] = useState(0)
+  const [inputData, setInputData] = useState()
+
+  const { register, handleSubmit } = useForm()
+  const onSubmit = data => setInputData(data.answer)
 
   const randomNumber = Math.floor(Math.random() * 6)
   console.log(makedCards[randomNumber].nameImg)
@@ -26,33 +31,34 @@ const Write = () => {
   },[])
 
   // EXERCISE LOGIC
-  const handleClick = (item) => {
-    console.log(item.nameImg)
-    if (item.nameImg === makedCards[randomNumber].nameImg) {
+  const handleClick = () => { 
+    if (inputData === makedCards[randomNumber].nameImg) {
       setAnswer(1)
     } else {
       setAnswer(-1)
     }
-
   }
  
   return (
     <div className="flex flex-col items-center ">
       <h1>Write</h1>
 
-      <div className="grid grid-cols-3 gap-4 p-4 w-full">
-        {
-          endList.map((item, i) => (
-            <div 
-              onClick={() => handleClick(item)}
-              className="bg-white text-center rounded-xl"
-              key={i}
-            >
-              {item.nameImg}
-            </div>
-          ))
-        } 
-      </div> 
+      <form 
+        className="flex flex-col my-4 gap-4" 
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <input 
+          className="p-4 rounded-full text-center"
+          placeholder="listen and write"
+          {...register("answer")}
+        />
+
+        <input 
+          className="bg-orange-500 p-4 rounded-full"
+          onClick={handleClick}
+          type="submit" 
+        />
+      </form> 
 
       <audio  src={makedCards[randomNumber].urlSound} controls />
 
