@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react" 
-import { TEMPO_MS } from "../constants/config" 
-import { useFetch } from "../services/GetCardToMemoryGame"
+import { TEMPO_MS } from "../constants/config"  
+import { useFetch } from "../hooks/useFetch"
  
 const MemoryContext = createContext()
 
 export const MemoryContextProvider = (props) => {  
-  const fetch = useFetch() 
+  const { shuffledCards } = useFetch() 
   const [cards, setCards] = useState([])  
   const [loading, setLoading] = useState(false)
  
@@ -18,13 +18,13 @@ export const MemoryContextProvider = (props) => {
   // START GAME
   const startGame = async () => {
     setLoading(true)  
-    setCards(fetch)
+    setCards(shuffledCards)
     setLoading(false)
   }
 
   // RESET GAME
   const resetGame =  () => {
-    setCards(fetch) 
+    setCards(shuffledCards) 
     setIdsFlippedCards([])
     setIdFoundPairsCards([])
     setNumbersCardsFlipped(0)
