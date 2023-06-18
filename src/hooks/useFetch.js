@@ -10,7 +10,7 @@ const data = cardNames
 export const useFetch = () => {
   const [images, setImages] = useState([])
   const [sounds, setSounds] = useState([])
-  const makeCards = [{}]
+  const makedCards = [{}]
 
   // GET DATA FROM FIREBASE
   useEffect(() => {
@@ -29,7 +29,7 @@ export const useFetch = () => {
 
   // CREATING AN OBJECT THROUGH ARRAY INTERACTION
   for (let i = 0; i < data.length; i++) {
-    makeCards[i] = {
+    makedCards[i] = {
       idBoth: i,  
       nameImg: data[i],
       urlImg: images[i],
@@ -38,7 +38,7 @@ export const useFetch = () => {
   }   
 
   // DUPLICATING THE CARDS
-  const pairsOfCards = [ ...makeCards, ...makeCards ].map((card, id) => ({
+  const pairsOfCards = [ ...makedCards, ...makedCards ].map((card, id) => ({
     id, ...card
   }))
 
@@ -59,5 +59,5 @@ export const useFetch = () => {
 
   const shuffledCards = shuffleCards(pairsOfCards)
 
-  return { images, sounds, makeCards, pairsOfCards, shuffledCards}
+  return { images, sounds, makedCards, pairsOfCards, shuffledCards}
 }

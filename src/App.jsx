@@ -12,6 +12,7 @@ import MemoryGame from "./pages/MemoryGame"
 import MonthNames from "./pages/MonthNames"
 import TicTacToe from "./pages/TicTacToe" 
 import WeekDays from "./pages/WeekDays"
+import Write from "./pages/write"
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/tictactoe" element={<TicTacToe />} /> 
           <Route path="/listen" element={<Listen />} />
+          <Route path="/write" element={<Write />} />
           <Route path="/days-of-the-week" element={<WeekDays />} />
           <Route path="/month-names" element={<MonthNames />} />
           <Route path="/greetings" element={<Greetings />} />
