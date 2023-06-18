@@ -1,4 +1,4 @@
-const cards = [
+export const cardNames = [
   'butterfly',
   'avocado',
   'banana',
@@ -25,13 +25,4 @@ const cards = [
   'sleep',
   'plant',
   'tired'
-] 
-
-const uniqueCard = cards.map((cardName, idBoth) => ({
-  idBoth,
-  cardName
-}))
-
-export const pairsOfCards = [...uniqueCard, ...uniqueCard].map((card, id) => ({
-  ...card, id
-}))
+]  
