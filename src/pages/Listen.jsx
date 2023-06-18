@@ -6,16 +6,13 @@ import { useFetch } from "../hooks/useFetch"
 const Listen = () => {
   const { makedCards } = useFetch()
   const [endList, setEndList] = useState([])
-  //console.log( makedCards[0] )
 
   useEffect(() => {
     const shuffleCards = (list = []) => {
       const smallList = [{}]
 
-      for (let i = 0; i < 5; i++) {
-        console.log('antes', smallList)
-        smallList[i] = list[i]
-        console.log('teste de console', list[i])
+      for (let i = 0; i < 5; i++) { 
+        smallList[i] = list[i] 
       }
 
       return smallList
@@ -23,14 +20,12 @@ const Listen = () => {
   
     setEndList(shuffleCards(makedCards))
   },[])
-
-  console.log('fora', endList)
-
+ 
   return (
     <div className="flex flex-col items-center ">
       <h1>Listen</h1>
 
-      <div className="grid grid-cols-4 gap-4 p-4 w-full">
+      <div className="grid grid-cols-3 gap-4 p-4 w-full">
         {
           endList.map((item, i) => (
             <div 
@@ -41,11 +36,9 @@ const Listen = () => {
             </div>
           ))
         } 
-      </div>
+      </div> 
 
-      <button className="bg-black text-white py-1 px-10 rounded-xl">
-        Listen
-      </button>
+      <audio  src={makedCards[0].urlSound} controls />
     </div>
   )
 }
