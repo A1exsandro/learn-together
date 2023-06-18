@@ -6,6 +6,10 @@ import { useFetch } from "../hooks/useFetch"
 const Listen = () => {
   const { makedCards } = useFetch()
   const [endList, setEndList] = useState([])
+  const [answer, setAnswer] = useState(0)
+
+  const randomNumber = Math.floor(Math.random() * 6)
+  console.log(makedCards[randomNumber].nameImg)
 
   useEffect(() => {
     const shuffleCards = (list = []) => {
@@ -20,6 +24,17 @@ const Listen = () => {
   
     setEndList(shuffleCards(makedCards))
   },[])
+
+  // EXERCISE LOGIC
+  const handleClick = (item) => {
+    console.log(item.nameImg)
+    if (item.nameImg === makedCards[randomNumber].nameImg) {
+      setAnswer(1)
+    } else {
+      setAnswer(-1)
+    }
+
+  }
  
   return (
     <div className="flex flex-col items-center ">
@@ -29,6 +44,7 @@ const Listen = () => {
         {
           endList.map((item, i) => (
             <div 
+              onClick={() => handleClick(item)}
               className="bg-white text-center rounded-xl"
               key={i}
             >
@@ -38,9 +54,21 @@ const Listen = () => {
         } 
       </div> 
 
-      <audio  src={makedCards[0].urlSound} controls />
+      <audio  src={makedCards[randomNumber].urlSound} controls />
+
+      {
+        answer >= 0 ? ( answer === 0 ? 
+          <div className="bg-orange-500 p-4 rounded-xl mt-4 font-bold">Listen and tap the correct word</div> :
+          <div className="bg-green-500 p-4 rounded-xl mt-4 font-bold">Great Job</div>
+        ) : (
+          <div className="bg-red-500 p-4 rounded-xl font-bold mt-4 text-white">Try Again</div>
+        )
+      }
     </div>
   )
 }
 
 export default Listen
+
+
+        
