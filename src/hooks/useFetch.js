@@ -42,5 +42,22 @@ export const useFetch = () => {
     id, ...card
   }))
 
-  return { images, sounds, makeCards, pairsOfCards}
+  // SHUFFLER THE CARDS
+  const shuffleCards = (list = []) => {
+    for (let i = list.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1))
+  
+      const item = list[i]
+      const randomItem = list[randomIndex]
+  
+      list[i] = randomItem
+      list[randomIndex] = item
+    }
+  
+    return list
+  }
+
+  const shuffledCards = shuffleCards(pairsOfCards)
+
+  return { images, sounds, makeCards, pairsOfCards, shuffledCards}
 }
