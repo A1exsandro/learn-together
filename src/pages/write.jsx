@@ -14,11 +14,10 @@ const Write = () => {
   const { register, handleSubmit } = useForm()
   const onSubmit = data => setInputData(data.answer)
  
-  const randomNumber = useMemo(() => Math.floor(Math.random() * 6), []) 
+  const randomNumber = useMemo(() => Math.floor(Math.random() * 6), [correct]) 
 
-  const listen = makedCards[randomNumber].urlSound
-  console.log('listen',makedCards[randomNumber].nameImg)
-  //console.log('write', inputData)
+  const listen = makedCards[randomNumber]
+  console.log('listen',makedCards[randomNumber].nameImg) 
 
   useEffect(() => {
     const shuffleCards = (list = []) => {
@@ -35,7 +34,7 @@ const Write = () => {
   useEffect(() => {
     if (inputData === null) return 
 
-    if (inputData === makedCards[randomNumber].nameImg) {
+    if (inputData === listen.nameImg) {
       setAmountOfTest(amount => amount + 1)
       setCorrect(amount => amount + 1)
       setAnswer(1)
@@ -43,7 +42,7 @@ const Write = () => {
       setAmountOfTest(amount => amount + 1)
       setWrong(amount => amount + 1)
       setAnswer(-1)
-    }
+    } 
   },[inputData]) 
 
   return (
@@ -53,15 +52,15 @@ const Write = () => {
       {/* Score */}
       <div className="w-full text-center py-2">
         <div className="bg-orange-500 rounded-full px-3 mb-2">
-          Amount of test: { amountOfTest }
+          Amount of test: {amountOfTest}
         </div>
 
         <div className="flex justify-between">
           <div className="bg-green-500 rounded-full px-3">
-            Correct: { correct }
+            Correct: {correct}
           </div>
           <div className="bg-red-500 rounded-full px-3">
-            Wrong: { wrong }
+            Wrong: {wrong}
           </div>
         </div>
       </div>
@@ -69,10 +68,23 @@ const Write = () => {
       {/* TIPS */}
       {
         answer >= 0 ? ( answer === 0 ? 
-          <div className="bg-orange-500 p-4 rounded-full w-full text-center mt-4 font-bold">Listen and write the correct word</div> :
-          <div className="bg-green-500 p-4 rounded-full w-full text-center mt-4 font-bold">Great Job</div>
+          <div 
+            className="bg-orange-500 p-4 rounded-full w-full text-center mt-4 font-bold"
+          >
+            Listen and write the correct word
+          </div> 
+          :
+          <div 
+            className="bg-green-500 p-4 rounded-full w-full text-center mt-4 font-bold"
+          >
+            Great Job
+          </div>
         ) : (
-          <div className="bg-red-500 p-4 rounded-full w-full text-center font-bold mt-4 text-white">Try Again</div>
+          <div 
+            className="bg-red-500 p-4 rounded-full w-full text-center font-bold mt-4 text-white"
+          >
+            Try Again
+          </div>
         )
       }
 
@@ -92,7 +104,7 @@ const Write = () => {
         />
       </form> 
 
-      <audio  src={listen} controls className="w-full"/>
+      <audio src={listen.urlSound} controls className="w-full"/>
     </div>
   )
 }
