@@ -43,11 +43,8 @@ const Layout = () => {
 
         </div> 
       </div>
-
-      <div>
-        <Outlet />
-      </div>
       
+      <Outlet />
     </>
   )
 };
