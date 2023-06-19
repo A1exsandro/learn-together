@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useFetch } from "../hooks/useFetch"
+import { useMemo } from "react"
 
 const Write = () => {
   const { makedCards } = useFetch()
@@ -13,8 +14,10 @@ const Write = () => {
   const { register, handleSubmit } = useForm()
   const onSubmit = data => setInputData(data.answer)
 
-  const randomNumber = Math.floor(Math.random() * 6)
-  console.log(makedCards[randomNumber].nameImg)
+  const randomNumber = useMemo(() => Math.floor(Math.random() * 6), [])
+  const listen = makedCards[randomNumber].urlSound
+  console.log('listen',makedCards[randomNumber].nameImg)
+  //console.log('write', inputData)
 
   useEffect(() => {
     const shuffleCards = (list = []) => {
@@ -31,14 +34,14 @@ const Write = () => {
   },[])
 
   // EXERCISE LOGIC
-  const handleClick = () => { 
+  useEffect(() => {
     if (inputData === makedCards[randomNumber].nameImg) {
       setAnswer(1)
     } else {
       setAnswer(-1)
     }
-  }
- 
+  },[inputData]) 
+
   return (
     <div className="flex flex-col items-center ">
       <h1>Write</h1>
@@ -55,12 +58,11 @@ const Write = () => {
 
         <input 
           className="bg-orange-500 p-4 rounded-full"
-          onClick={handleClick}
           type="submit" 
         />
       </form> 
 
-      <audio  src={makedCards[randomNumber].urlSound} controls />
+      <audio  src={listen} controls />
 
       {
         answer >= 0 ? ( answer === 0 ? 
