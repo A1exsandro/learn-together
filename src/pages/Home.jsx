@@ -2,7 +2,7 @@ import React from "react"
 import Menu from "../components/menu"
 
 const Home = () => { 
-  const pages = ['listen', 'Days Of The Week', 'Month Names', 'Greetings',
+  const pages = ['listen', 'write', 'Days Of The Week', 'Month Names', 'Greetings',
    'Colors', 'Body Parts', 'Phrasal verbs']
 
   return(
