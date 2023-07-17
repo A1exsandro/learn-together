@@ -8,8 +8,8 @@ const storage = getStorage()
 const data = cardNames
 
 export const useFetch = () => {
-  const [images, setImages] = useState([])
-  const [sounds, setSounds] = useState([])
+  const [images, setImages] = useState(null)
+  const [sounds, setSounds] = useState(null)
   const [makedCards, setMakedCards] = useState([])
 
   // GET DATA FROM FIREBASE
@@ -36,7 +36,7 @@ export const useFetch = () => {
   },[]) 
 
   useEffect(() => {
-    if (images.length > 0 && sounds.length > 0) {
+    if (images && sounds) {
       const updatedMakedCards = data.map((dt, i) => ({
         idBoth: i,
         nameImg: dt,
