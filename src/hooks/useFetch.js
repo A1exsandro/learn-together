@@ -10,7 +10,7 @@ const data = cardNames
 export const useFetch = () => {
   const [images, setImages] = useState([])
   const [sounds, setSounds] = useState([])
-  const makedCards = [{}]
+  const [makedCards, setMakedCards] = useState([])
 
   // GET DATA FROM FIREBASE
   useEffect(() => {
@@ -21,21 +21,31 @@ export const useFetch = () => {
       getDownloadURL(ref(storage, `audio/${dt}.mp3`))
     ))
 
+
     Promise.all(promises)
-      .then((urls) => setImages(urls)) 
+      .then((urls) => setImages(urls))
+      .catch((error) => {
+        // Handle error if necessary
+      });
+
     Promise.all(audioPromises)
       .then((audios) => setSounds(audios)) 
-  },[])
+      .catch((error) => {
+        // Handle error if necessary
+      });
+  },[]) 
 
-  // CREATING AN OBJECT THROUGH ARRAY INTERACTION
-  for (let i = 0; i < data.length; i++) {
-    makedCards[i] = {
-      idBoth: i,  
-      nameImg: data[i],
-      urlImg: images[i],
-      urlSound: sounds[i],
+  useEffect(() => {
+    if (images.length > 0 && sounds.length > 0) {
+      const updatedMakedCards = data.map((dt, i) => ({
+        idBoth: i,
+        nameImg: dt,
+        urlImg: images[i],
+        urlSound: sounds[i],
+      }));
+      setMakedCards(updatedMakedCards);
     }
-  }   
+  }, [images, sounds]);
 
   // DUPLICATING THE CARDS
   const pairsOfCards = [ ...makedCards, ...makedCards ].map((card, id) => ({
